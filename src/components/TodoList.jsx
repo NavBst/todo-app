@@ -15,24 +15,28 @@ const TodoList = () => {
         if (isUpdate && childData !== null) {
 
             if (todo.length > 0) {
-                todos[childData] = todo;
-                setTodos(todos);
+                let updatedData = todos;
+                updatedData[childData] = todo;
+                setTodos(updatedData);
+                localStorage.setItem('todos', JSON.stringify(updatedData))
                 setIsUpdate(false)
+
             }
-            setTodo("")
         }
        else if (todo.length > 0) {
             console.log("first")
-            let addto = [...todos];
-            addto.push(todo);
-            setTodos(addto)
+            let addtodo = [...todos];
+            addtodo.push(todo);
+            setTodos(addtodo)
+            localStorage.setItem('todos', JSON.stringify(addtodo));
         }
         setTodo("")
     }
 
-    // useEffect(()=>{
-    //   setTimeout(()=>addTodo,3000);
-    // }, [todos])
+    useEffect(()=>{
+        const getTodo = JSON.parse(localStorage.getItem('todos')) ?? [];
+        setTodos(getTodo);
+    }, [])
 
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-gray-100 rounded-xl shadow-lg">
