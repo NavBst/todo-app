@@ -3,7 +3,7 @@ const TodoItem = ({item, index, handleDel, checked, handleEdit}) => {
 
   return (
   
-            <li key={index} className={`flex justify-between px-5 py-2 items-center gap-6 mb-[0.1rem] rounded  ${item.completed ? "bg-gray-500 " : "bg-blue-300/60"} `} >
+            <li key={index} className={`flex justify-between px-5 py-2 items-center gap-6 mb-[0.2rem] rounded  ${item.completed ? "bg-gray-500 " : "bg-blue-300/60"} `} >
               <div className='flex-center gap-2'>
                 <label className="flex gap-3 items-center cursor-pointer">
                   <input

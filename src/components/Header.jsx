@@ -1,4 +1,4 @@
-import React from 'react'
+import github from '../../public/github.svg'
 
 const Header = () => {
   return (
@@ -9,6 +9,14 @@ const Header = () => {
       <p className="mt-1 text-base font-normal opacity-90">
         Organize your tasks efficiently
       </p>
+      <div className='absolute z-10 right-0 bottom-0  inline-block'>
+        <a href="https://github.com/NavBst/todo-app" className='rounded-full flex items-center gap-2'>
+          <span className='text-black font-bold font-mono'>
+            To Github Repo.
+          </span>
+          <img src={github} alt="" className='animate-pulse' />
+        </a>
+      </div>
     </header>
   )
 }

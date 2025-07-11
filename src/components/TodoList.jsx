@@ -78,7 +78,7 @@ const TodoList = () => {
     }, [])
 
     return (
-        <div className="max-w-lg mx-auto mt-10 p-6 bg-gray-200 rounded-xl shadow-lg">
+        <div className="max-w-lg mx-auto mt-10 p-6 bg-gray-200 rounded-xl shadow-lg max-h-[500px] overflow-y-scroll">
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Todo List</h2>
             <div className="w-full flex justify-center gap-3.5 mb-6">
                 <input
