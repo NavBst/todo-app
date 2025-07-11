@@ -1,17 +1,18 @@
 import React from 'react'
 
-const TodoItem = ({ list, setTodos, setTodo, setIsUpdate, updateTodo, isUpdate }) => {
-  function handleDel(index) {
+const TodoItem = ({ list, setTodos, setTodo, setIsUpdate, updateTodo, childData }) => {
+  
+  function handleDel(index) { // handling deleting an todo
     const newarr = list.filter((_, i) => i !== index);
-    console.log(newarr)
+    localStorage.setItem('todos', JSON.stringify(newarr)) // updating in local storage
     setTodos(newarr)
+    if(index === childData) { // handling the deletion of currently updating todo.
+      setTodo("");
+      setIsUpdate(false)
+    };
   }
 
-  function cancel() {
-    setTodo("");
-    setIsUpdate(false)
-  }
-  function handleupdate(i) {
+  function handleupdate(i) { // --> triggers when Edit button clicked
     const item = list[i]
     setTodo(item);
     setIsUpdate(true);
@@ -25,11 +26,11 @@ const TodoItem = ({ list, setTodos, setTodo, setIsUpdate, updateTodo, isUpdate }
             <li key={index} className={`flex justify-between px-5 py-2 items-center gap-6 mb-[0.1rem] bg-blue-200 transition-all duration-300 `}>
               <span className='font-bold'>{index + 1} </span>  {todo}
               <span className='flex justify-center items-center gap-6'>
-                <button className={`  p-2 rounded cursor-pointer active:scale-95 ${isUpdate ? "bg-[rgba(153,107,107,0.5)]     text-gray-500 line-through" : "bg-red-500 text-white"}`}
+                <button className={`  p-2 rounded cursor-pointer active:scale-95 bg-red-500 text-white`}
                   onClick={() => handleDel(index)}
-                  disabled={isUpdate ? "disabled" : isUpdate}>delete</button>
-                <button className={` text-white p-2 rounded cursor-pointer ${isUpdate ? "bg-orange-400" : "bg-blue-500"}`}
-                  onClick={!isUpdate ? () => handleupdate(index) : cancel}>{isUpdate ? "Cancel" : "Edit"}</button>
+                 >delete</button>
+                <button className={` text-white p-2 rounded cursor-pointer bg-blue-500`}
+                  onClick={() => handleupdate(index)}>Edit</button>
               </span>
             </li>
           )
